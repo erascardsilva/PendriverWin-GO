@@ -86,7 +86,7 @@ func setupPendrive(pendrive, isoPath string) {
 	isoMountPoint := "/mnt/iso"
 
 	fmt.Println("Apagando todas as partições existentes...")
-	cmd := exec.Command("dd", "if=/dev/zero", fmt.Sprintf("of=%s", pendrive), "bs=512", "count=1")
+	cmd := exec.Command("dd", "if=/dev/zero", fmt.Sprintf("of=%s", pendrive), "bs=1G", "count=1")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("Erro ao apagar partições: %s\n", output)
@@ -109,7 +109,7 @@ w
 		return
 	}
 
-	fmt.Println("Formatando a nova partição em FAT32...")
+	fmt.Println("Formatando Pendriver em FAT32...")
 	if err := unmountPartition(partitionPath); err != nil {
 		fmt.Printf("Erro ao desmontar partição %s: %s\n", partitionPath, err)
 		return
@@ -131,6 +131,15 @@ w
 		fmt.Printf("Erro ao criar ponto de montagem do pendrive: %s\n", err)
 		return
 	}
+
+	fmt.Println("Criando ponto de ISO")
+	cmdM := exec.Command("mkdir", "-p", isoMountPoint)
+	_, err = cmdM.CombinedOutput()
+	if err != nil {
+		fmt.Printf("Erro ao criar ponto de montagem do pendrive: %s\n", err)
+		return
+	}
+	fmt.Println("Caminho da ISO:", cmdM)
 
 	fmt.Println("Montando o pendrive...")
 	cmd = exec.Command("mount", partitionPath, mountPoint)
