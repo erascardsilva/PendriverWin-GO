@@ -285,6 +285,7 @@ func main() {
 
 	setupPendrive(pendrive, isoPath)
 	fmt.Println("____________________________________________________")
-	fmt.Println(`Processo finalizado.. \n.............ass: Erasmo Cardoso`)
+	fmt.Println(`Processo finalizado.. ...........`)
+	fmt.Println("ass. Erasmo Cardoso.......................")
 	fmt.Println("____________________________________________________")
 }
