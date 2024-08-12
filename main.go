@@ -200,6 +200,9 @@ w
 }
 
 func main() {
+	// sequncia para limpar o terminal
+	fmt.Print("\033[H\033[2J")
+
 	if !checkRoot() {
 		fmt.Println("Este programa deve ser executado como root. Por favor, execute com 'sudo'.")
 		return
@@ -209,6 +212,11 @@ func main() {
 		fmt.Println("O rsync não está instalado. Instale-o usando o comando: sudo apt-get install rsync")
 		return
 	}
+
+	fmt.Println("____________________________________________________")
+	fmt.Println("Criador de Boot para Windows no linux ")
+	fmt.Println("Deixa a iso ou as isos na pasta em que esta o app")
+	fmt.Println("____________________________________________________")
 
 	// Diretório onde o aplicativo está localizado
 	dir, err := os.Getwd()
@@ -276,4 +284,7 @@ func main() {
 	isoPath := isoFiles[isoChoice-1]
 
 	setupPendrive(pendrive, isoPath)
+	fmt.Println("____________________________________________________")
+	fmt.Println(`Processo finalizado.. \n.............ass: Erasmo Cardoso`)
+	fmt.Println("____________________________________________________")
 }
