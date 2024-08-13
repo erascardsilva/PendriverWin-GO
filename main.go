@@ -86,7 +86,7 @@ func setupPendrive(pendrive, isoPath string) {
 	isoMountPoint := "/mnt/iso"
 
 	fmt.Println("Apagando todas as partições existentes...")
-	cmd := exec.Command("dd", "if=/dev/zero", fmt.Sprintf("of=%s", pendrive), "bs=1G", "count=1")
+	cmd := exec.Command("dd", "if=/dev/zero", fmt.Sprintf("of=%s", pendrive), "bs=8M", "count=1")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("Erro ao apagar partições: %s\n", output)
